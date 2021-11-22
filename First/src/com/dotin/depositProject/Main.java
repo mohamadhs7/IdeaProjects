@@ -1,67 +1,44 @@
 package com.dotin.depositProject;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
+import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
+        String debtorDepositNumber=null;
+        double debtorAmount=0;
 
-        //Creating Objects for inserting data
-        Deposit d1 = new Deposit("1.10.100.1",1000,DepositState.debtor);
-        Deposit d2 = new Deposit("1.20.100.1",300,DepositState.creator);
-        Deposit d3 = new Deposit("1.20.100.2",700,DepositState.creator);
-        
-        ArrayList<Deposit> deposits = new ArrayList<Deposit>();
-        deposits.add(d1);
-        deposits.add(d2);
-        deposits.add(d3);
 
-        //Creating Payment File
-        try {
-            File paymentFile = new File("C:\\Users\\admin\\Desktop\\PaymentFile.txt");
-            if (paymentFile.createNewFile()) {
-                System.out.println("File created: " + paymentFile.getName());
-            }
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-        //Writting in Payment File
-        try {
-            FileWriter myWriter = new FileWriter("C:\\Users\\admin\\Desktop\\PaymentFile.txt");
-            for(Deposit d:deposits) {
-                myWriter.write(d.getState()+"    "+d.getDepositNumber()+"    "+d.getAmount()+"\n");
-            }
-            myWriter.close();
-            System.out.println("Successfully wrote to the file:");
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
+        Scanner s1 = new Scanner(new File("C:\\Users\\sadeghi\\Desktop\\PaymentFile.txt"));
+        while (s1.hasNextLine()) {
+                String s=null;
+                Scanner s2 = new Scanner(s1.nextLine());
+                s = s2.next();
+                if(s.equals("debtor")){
+                    debtorDepositNumber=s2.next();
+                    debtorAmount=s2.nextDouble();
+                    break;
+                }
         }
 
-        //Creating Amount File
-        try {
-            File amountFile = new File("C:\\Users\\admin\\Desktop\\AmountFile.txt");
-            if (amountFile.createNewFile()) {
-                System.out.println("File created: " + amountFile.getName());
+        HashMap<String,Double> creators = new HashMap<String, Double>();
+        Scanner s3 = new Scanner(new File("C:\\Users\\sadeghi\\Desktop\\AmountFile.txt"));
+        while (s3.hasNextLine()) {
+            String s=null;
+            Scanner s4 = new Scanner(s3.nextLine());
+            s = s4.next();
+            if(s.equals(debtorDepositNumber)){
+                continue;
+            }else {
+            while (s4.hasNext()){
+                String creatorDepositNumber=s;
+                double creatorAmount=s4.nextDouble();
+                creators.put(creatorDepositNumber,creatorAmount);
             }
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-        //Writting in Payment File
-        try {
-            FileWriter myWriter = new FileWriter("C:\\Users\\admin\\Desktop\\AmountFile.txt");
-            for(Deposit d:deposits) {
-                myWriter.write(d.getDepositNumber()+"    "+d.getAmount()+"\n");
             }
-            myWriter.close();
-            System.out.println("Successfully wrote to the file.");
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
         }
+        System.out.println(creators);
     }
 }

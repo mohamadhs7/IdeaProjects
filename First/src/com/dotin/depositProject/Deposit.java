@@ -30,4 +30,6 @@ public class Deposit {
        public DepositState getState() {
            return state;
     }
+
+
 }
