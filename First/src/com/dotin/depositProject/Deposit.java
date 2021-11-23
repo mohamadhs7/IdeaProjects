@@ -5,6 +5,7 @@ public class Deposit {
     private double amount;
     private DepositState state;
 
+
     public Deposit(String depositNumber, double amount, DepositState depositState) {
         this.depositNumber = depositNumber;
         this.amount = amount;
@@ -31,5 +32,7 @@ public class Deposit {
            return state;
     }
 
-
+    public void setState(DepositState state) {
+        this.state = state;
+    }
 }

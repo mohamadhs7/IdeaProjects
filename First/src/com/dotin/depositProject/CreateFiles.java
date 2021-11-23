@@ -43,10 +43,11 @@ public class CreateFiles {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-        //Writting in Payment File
+        //Writting in Amount File
         try {
             FileWriter myWriter = new FileWriter("C:\\Users\\sadeghi\\Desktop\\AmountFile.txt");
             for(Deposit d:deposits) {
+                if(d.getState()==DepositState.debtor)
                 myWriter.write(d.getDepositNumber()+"    "+d.getAmount()+"\n");
             }
             myWriter.close();
@@ -61,15 +62,16 @@ public class CreateFiles {
 
         //Creating Objects for inserting data
         Deposit d1 = new Deposit("1.10.100.1",1000,DepositState.debtor);
-        Deposit d2 = new Deposit("1.20.100.1",300,DepositState.creator);
-        Deposit d3 = new Deposit("1.20.100.2",700,DepositState.creator);
+        Deposit d2 = new Deposit("1.20.100.1",300,DepositState.creditor);
+        Deposit d3 = new Deposit("1.20.100.2",700,DepositState.creditor);
 
         ArrayList<Deposit> deposits = new ArrayList<Deposit>();
         deposits.add(d1);
         deposits.add(d2);
         deposits.add(d3);
 
-        PaymentFileProcess(deposits);
-        AmoontFileProcess(deposits);
+       PaymentFileProcess(deposits);
+       AmoontFileProcess(deposits);
+
     }
 }

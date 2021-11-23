@@ -1,5 +1,5 @@
 package com.dotin.depositProject;
 
 public enum DepositState {
-    debtor, creator
+    debtor,creditor,clear
 }
