@@ -82,7 +82,7 @@ public class Deposit {
     public  static void AmountFileProcess( ArrayList<Deposit> deposits){
         //Creating Amount File
         try {
-            File amountFile = new File("C:\\Users\\admin\\Desktop\\AmountFile.txt");
+            File amountFile = new File("AmountFile.txt");
             if (amountFile.createNewFile()) {
                 System.out.println("File created: " + amountFile.getName());
             }
