@@ -16,5 +16,4 @@ public class Main {
         ArrayList<Deposit> creditorList=makeCreditorList(paymentFile);
         Pay(deptor,creditorList,transactionFile);
     }
-
 }
