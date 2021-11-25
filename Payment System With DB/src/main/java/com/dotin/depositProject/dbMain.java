@@ -18,8 +18,6 @@ public class dbMain   {
         Deposit deptor =makeDeptorObject(paymentFile);
         ArrayList<Deposit> creditorList=makeCreditorList(paymentFile);
 
-
-
         SessionFactory sf=new Configuration().configure().buildSessionFactory();
         Session session=sf.getCurrentSession();
         Transaction tx= session.beginTransaction();
@@ -31,6 +29,6 @@ public class dbMain   {
 
 
         tx.commit();
-        session.close();
+       // session.close();
     }
 }

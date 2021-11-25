@@ -33,6 +33,11 @@
             <artifactId>hibernate-jpa-2.1-api</artifactId>
             <version>1.0.2.Final</version>
         </dependency>
+        <dependency>
+            <groupId>com.sun.istack</groupId>
+            <artifactId>istack-commons</artifactId>
+            <version>3.0.12</version>
+        </dependency>
 
 
     </dependencies>

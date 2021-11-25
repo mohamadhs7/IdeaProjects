@@ -1,9 +1,6 @@
 package com.dotin.depositProject;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,10 +11,11 @@ import java.util.*;
 @Entity
 public class Deposit {
     @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private double id;
+    private long id;
 
     private String depositNumber;
     private double amount;
+    @Enumerated(EnumType.STRING)
     private DepositState state;
 
     public Deposit(){}
@@ -25,6 +23,14 @@ public class Deposit {
         this.depositNumber = depositNumber;
         this.amount = amount;
         this.state = depositState;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getDepositNumber() {
@@ -61,6 +67,7 @@ public class Deposit {
             if(s.equals("debtor")){
                 debtorObject.setDepositNumber(s2.next());
                 debtorObject.setAmount(s2.nextDouble());
+                debtorObject.setState(DepositState.debtor);
             }
         }
         return debtorObject;
@@ -116,25 +123,33 @@ public class Deposit {
         }
     }
 
-    public static void Pay(Deposit debtor, ArrayList<Deposit> creatorDeposits, FileWriter transactionFile) throws IOException {
+    public static int Pay(Deposit debtor, ArrayList<Deposit> creatorDeposits,ArrayList<Transaction> transactions) throws IOException {
         double requiredAmount=0;
         for(Deposit d :creatorDeposits){
             requiredAmount=d.getAmount()+requiredAmount;
         }
         if(debtor.getAmount()>=requiredAmount){
             for(Deposit d :creatorDeposits){
-                transactionFile.write(debtor.getDepositNumber()+"     "+d.getDepositNumber()+"    "+d.getAmount()+"\n");
+                Transaction t =new Transaction(debtor.getDepositNumber(),d.getDepositNumber(),d.getAmount());
+                transactions.add(t);
                 debtor.setAmount(debtor.getAmount()-d.getAmount());
                 d.setState(DepositState.clear);
             }
-            transactionFile.close();
             debtor.setState(DepositState.clear);
-            ArrayList<Deposit> deposits= new ArrayList<>();
-            deposits.add(debtor);
-            deposits.addAll(creatorDeposits);
-            AmountFileProcess(deposits);
-            System.out.println("Transaction File Created");
+            System.out.println("Payment is done");
+            return 1;
         }else
             System.out.println("debtorAmount is not Enough");
+        return -1;
+    }
+
+    @Override
+    public String toString() {
+        return "Deposit{" +
+                "id=" + id +
+                ", depositNumber='" + depositNumber + '\'' +
+                ", amount=" + amount +
+                ", state=" + state +
+                '}';
     }
 }
