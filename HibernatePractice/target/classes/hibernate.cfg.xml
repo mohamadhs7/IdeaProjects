@@ -19,6 +19,7 @@
         <!-- mapping class="com.mcnz.jpa.examples.Player" / -->
         <mapping class="TestTable"/>
         <mapping class="Employee"/>
+        <mapping class="Customer"/>
 
     </session-factory>
 </hibernate-configuration>
