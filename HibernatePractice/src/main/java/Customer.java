@@ -20,7 +20,7 @@ public class Customer {
     private String country;
     @Column(name = "grade")
     private BigDecimal grade;
-   @Column(scale = 12,precision = 2,name = "payment_amt")
+   @Column(scale = 2,precision = 12,name = "payment_amount")
     private BigDecimal paymentAmount;
 
 

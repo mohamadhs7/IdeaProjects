@@ -6,6 +6,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.*;
 import org.hibernate.query.Query;
 import org.hibernate.transform.Transformers;
+import java.math.BigDecimal;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -52,12 +53,6 @@ public class Main {
 //        System.out.println(map1.size());
 
 
-
-
-
-
-
-
 //        session.save(e1);
        // session.save(t1);
 
@@ -66,8 +61,15 @@ public class Main {
 //        session.save(e2);
 
        // session.save(c1);
+        BigDecimal paymentAmount= BigDecimal.valueOf(5000.00);
 
-
+            Criteria cr = session.createCriteria(Customer.class);
+            Criterion co1=Restrictions.eq("country","USA");
+            Criterion co2= Restrictions.ge("paymentAmount",paymentAmount);
+            Criterion co3=Restrictions.and(co1,co2);
+            cr.add(co3);
+            List<Customer> customers = cr.list();
+//            session.get(Customer.class,(long)9);
 
         tx.commit();
         session.close();
@@ -85,5 +87,8 @@ public class Main {
 //        for (Customer c:map){
 //            System.out.println(c.toString());
 //        }
+        for (Customer c:customers){
+            System.out.println(c.toString());
+        }
     }
 }

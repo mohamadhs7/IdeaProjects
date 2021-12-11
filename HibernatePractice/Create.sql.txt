@@ -70,3 +70,27 @@ INSERT INTO CUSTOMER VALUES ('C00014', 'Rangarappa', 'Bangalore', 'Bangalore', '
 INSERT INTO CUSTOMER VALUES ('C00016', 'Venkatpati', 'Bangalore', 'Bangalore', 'India', '2', '8000.00', '11000.00', '7000.00', '12000.00', 'JRTVFDD');
 INSERT INTO CUSTOMER VALUES ('C00011', 'Sundariya', 'Chennai', 'Chennai', 'India', '3', '7000.00', '11000.00', '7000.00', '11000.00', 'PPHGRTS');
 
+
+INSERT INTO CUSTOMER VALUES ('5', 'Cook', 'London', 'London', 'UK', '2', '6000.00');
+INSERT INTO CUSTOMER VALUES ('6', 'Stuart', 'London', 'London', 'UK', '1', '11000.00');
+INSERT INTO CUSTOMER VALUES ('7', 'Bolt', 'New York', 'New York', 'USA', '3', '3000.00');
+INSERT INTO CUSTOMER VALUES ('8', 'Fleming', 'Brisban', 'Brisban', 'Australia', '2', '5000.00');
+INSERT INTO CUSTOMER VALUES ('9', 'Jacks', 'Brisban', 'Brisban', 'Australia', '1',  '7000.00');
+INSERT INTO CUSTOMER VALUES ('10', 'Yearannaidu', 'Chennai', 'Chennai', 'India', '1', '8000.00');
+INSERT INTO CUSTOMER VALUES ('11', 'Sasikant', 'Mumbai', 'Mumbai', 'India', '1', '11000.00');
+INSERT INTO CUSTOMER VALUES ('12', 'Ramanathan', 'Chennai', 'Chennai', 'India', '1', '9000.00');
+INSERT INTO CUSTOMER VALUES ('13', 'Avinash', 'Mumbai', 'Mumbai', 'India', '2',  '9000.00');
+INSERT INTO CUSTOMER VALUES ('14', 'Winston', 'Brisban', 'Brisban', 'Australia', '1', '6000.00');
+INSERT INTO CUSTOMER VALUES ('15', 'Karl', 'London', 'London', 'UK', '0', '3000.00');
+INSERT INTO CUSTOMER VALUES ('16', 'Shilton', 'Torento', 'Torento', 'Canada', '1', '11000.00');
+INSERT INTO CUSTOMER VALUES ('17', 'Charles', 'Hampshair', 'Hampshair', 'UK', '3', '5000.00');
+INSERT INTO CUSTOMER VALUES ('18', 'Srinivas', 'Bangalore', 'Bangalore', 'India', '2', '9000.00');
+INSERT INTO CUSTOMER VALUES ('19', 'Steven', 'San Jose', 'San Jose', 'USA', '1', '3000.00');
+INSERT INTO CUSTOMER VALUES ('20', 'Karolina', 'Torento', 'Torento', 'Canada', '1', '5000.00');
+INSERT INTO CUSTOMER VALUES ('21', 'Martin', 'Torento', 'Torento', 'Canada', '2', '8000.00');
+INSERT INTO CUSTOMER VALUES ('22', 'Ramesh', 'Mumbai', 'Mumbai', 'India', '3', '12000.00');
+INSERT INTO CUSTOMER VALUES ('23', 'Rangarappa', 'Bangalore', 'Bangalore', 'India', '2', '12000.00');
+INSERT INTO CUSTOMER VALUES ('24', 'Venkatpati', 'Bangalore', 'Bangalore', 'India', '2', '12000.00');
+INSERT INTO CUSTOMER VALUES ('25', 'Sundariya', 'Chennai', 'Chennai', 'India', '3', '11000.00');
+
+
