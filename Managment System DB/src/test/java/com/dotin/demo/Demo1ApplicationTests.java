@@ -1,10 +1,10 @@
-package com.example.managmentsystemdb;
+package com.dotin.demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ManagmentSystemDbApplicationTests {
+class Demo1ApplicationTests {
 
     @Test
     void contextLoads() {

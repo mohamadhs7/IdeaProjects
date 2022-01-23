@@ -1,4 +1,4 @@
-package com.dotin.entities;
+package com.dotin.demo.entities;
 
 import java.util.Date;
 import java.util.List;

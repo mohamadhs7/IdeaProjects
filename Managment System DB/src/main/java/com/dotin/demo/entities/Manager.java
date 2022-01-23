@@ -1,14 +1,17 @@
-package com.dotin.entities;
+package com.dotin.demo.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+import javax.persistence.*;
 import java.util.List;
+
 
 @Entity
 public class Manager {
-    @Id
-    private double id;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private String firstName;
     private String lastName;
     private Role role;
@@ -16,11 +19,18 @@ public class Manager {
     private List<Employee> employee;
     public Manager(){}
 
-    public double getId() {
+    public Manager(long id, String firstName, String lastName, Role role) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.role = role;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(double id) {
+    public void setId(long id) {
         this.id = id;
     }
 

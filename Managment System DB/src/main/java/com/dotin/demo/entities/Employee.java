@@ -1,14 +1,11 @@
-package com.dotin.entities;
+package com.dotin.demo.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import java.time.Period;
+import javax.persistence.*;
 
 @Entity
 public class Employee {
-    @Id
-    private double id;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private String firstName;
     private String lastName;
     private Role role;
@@ -21,11 +18,11 @@ public class Employee {
 
     public Employee(){};
 
-    public double getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(double id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -85,15 +82,15 @@ public class Employee {
         this.offRequestcounts = offRequestcounts;
     }
 
-    public void offRequest(Period p){
-        this.setOffRequestcounts(this.getOffRequestcounts()+1);
-        if(this.getOffRequestcounts()<=this.getOffRequestCapacities()){
-            if(){
-                this.setOffRequset(true);
-
-            }
-        }else
-            System.out.println("You aren't allowed to request for off Because your Capacity is full");
-    }
+//    public void offRequest(Period p){
+//        this.setOffRequestcounts(this.getOffRequestcounts()+1);
+//        if(this.getOffRequestcounts()<=this.getOffRequestCapacities()){
+//            if(){
+//                this.setOffRequset(true);
+//
+//            }
+//        }else
+//            System.out.println("You aren't allowed to request for off Because your Capacity is full");
+//    }
 
 }
