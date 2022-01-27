@@ -1,28 +1,37 @@
 package com.dotin.demo.entities;
 
-
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+import com.dotin.demo.repositories.EmployeeRepository;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 
 @Entity
 public class Manager {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String firstName;
     private String lastName;
+    @ElementCollection
+    @JoinTable(name = "impossibleOffDates")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<LocalDate> impossibleOffRequestsDates;
     private Role role;
-    @OneToMany
-    private List<Employee> employee;
-    public Manager(){}
 
-    public Manager(long id, String firstName, String lastName, Role role) {
-        this.id = id;
+    @OneToMany(mappedBy = "manager",cascade = CascadeType.ALL)
+    private List<Employee> employee;
+
+    public Manager() {
+    }
+
+    public Manager(String firstName, String lastName, List<LocalDate> impossibleOffRequestsDates, Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.impossibleOffRequestsDates = impossibleOffRequestsDates;
         this.role = role;
     }
 
@@ -64,5 +73,45 @@ public class Manager {
 
     public void setEmployee(List<Employee> employee) {
         this.employee = employee;
+    }
+
+    public List<LocalDate> getImpossibleOffRequestsDates() {
+        return impossibleOffRequestsDates;
+    }
+
+    public void setImpossibleOffRequestsDates(List<LocalDate> impossibleOffRequestsDates) {
+        this.impossibleOffRequestsDates = impossibleOffRequestsDates;
+    }
+
+    public void addImpossibleOffRequestsDate(LocalDate date) {
+        impossibleOffRequestsDates.add(date);
+    }
+
+    public void addImpossibleOffRequestsDate(List<LocalDate> dates) {
+        impossibleOffRequestsDates.addAll(dates);
+    }
+
+    public void answeroffRequests(EmployeeRepository empRepo) {
+        List<Employee> employees = empRepo.findEmployeeByOffRequset(true);
+        for (Employee e : employees) {
+            e.setOffRequestSituation(1);
+            for (LocalDate l : impossibleOffRequestsDates) {
+                int j = 0;
+                if (j == 0) {
+                    for (LocalDate l2 : e.getOffRequestsDates()) {
+                        if (l.equals(l2)) {
+                            j++;
+                            e.setOffRequestSituation(-1);
+                            e.setOffRequset(false);
+                            e.setOffRequestcounts(e.getOffRequestcounts()-1);
+                            e.setOffRequestsDates(null);
+                            break;
+                            }
+                        }
+                    }else
+                        break;
+                }
+            empRepo.save(e);
+        }
     }
 }

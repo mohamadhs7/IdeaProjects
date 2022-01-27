@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ManagerRepository extends CrudRepository<Manager,Long> {
 
+    Manager findById(Class<Manager> managerClass, long l);
 }
