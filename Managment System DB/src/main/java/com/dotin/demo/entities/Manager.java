@@ -92,7 +92,7 @@ public class Manager {
     }
 
     public void answeroffRequests(EmployeeRepository empRepo) {
-        List<Employee> employees = empRepo.findEmployeeByOffRequset(true);
+        List<Employee> employees = empRepo.findEmployeeByOffRequsetAndManager(true,this);
         for (Employee e : employees) {
             e.setOffRequestSituation(1);
             for (LocalDate l : impossibleOffRequestsDates) {
@@ -102,7 +102,6 @@ public class Manager {
                         if (l.equals(l2)) {
                             j++;
                             e.setOffRequestSituation(-1);
-                            e.setOffRequset(false);
                             e.setOffRequestcounts(e.getOffRequestcounts()-1);
                             e.setOffRequestsDates(null);
                             break;
@@ -111,6 +110,7 @@ public class Manager {
                     }else
                         break;
                 }
+            e.setOffRequset(false);
             empRepo.save(e);
         }
     }
