@@ -37,11 +37,11 @@ public class Main {
 //            e2OffReqDates.add(LocalDate.of(2000,8,3));
 //            e2OffReqDates.add(LocalDate.of(2000,8,4));
 //
-            List<LocalDate> e3OffReqDates=new ArrayList<>();
-            e3OffReqDates.add(LocalDate.of(2000,10,30));
-            e3OffReqDates.add(LocalDate.of(2000,11,1));
-            e3OffReqDates.add(LocalDate.of(2000,11,2));
-            e3OffReqDates.add(LocalDate.of(2000,11,3));
+//            List<LocalDate> e3OffReqDates=new ArrayList<>();
+//            e3OffReqDates.add(LocalDate.of(2000,10,30));
+//            e3OffReqDates.add(LocalDate.of(2000,11,1));
+//            e3OffReqDates.add(LocalDate.of(2000,11,2));
+//            e3OffReqDates.add(LocalDate.of(2000,11,3));
 
 
 //        Manager m1 = new Manager("Ahmad","Ahmadi",impossibleOffReqM, Role.Developer);
@@ -66,12 +66,13 @@ public class Main {
 //        session.save(e);
 
 
+//
+//            Criteria cr =session.createCriteria(Employee.class);
+//            cr.add(Restrictions.eq("offRequset",true));
+//            cr.createAlias("manager","manager");
+//            cr.add(Restrictions.eq("manager.id",2l));
+//            List<Employee> employees = cr.list();
 
-            Criteria cr =session.createCriteria(Employee.class);
-            cr.add(Restrictions.eq("offRequset",true));
-            cr.createAlias("manager","manager");
-            cr.add(Restrictions.eq("manager.id",2l));
-            List<Employee> employees = cr.list();
 
 
 //            Manager m =session.get(Manager.class,2l);
@@ -82,8 +83,9 @@ public class Main {
 
         tx.commit();
 
-        for(Employee e:employees){
-            System.out.println(e.toString());
-        }
+
+//        for(Employee e:employees){
+//            System.out.println(e.toString());
+//        }
     }
 }

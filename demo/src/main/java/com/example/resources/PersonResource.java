@@ -15,7 +15,7 @@ import java.util.List;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@RequestMapping(path = "/persons", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/persons") //consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 public class PersonResource {
 
     private long counter = 0L;
@@ -59,6 +59,9 @@ public class PersonResource {
         return new ResponseEntity<>(person, HttpStatus.OK);
     }
 
+   // @PutMapping
+
+
     // get    /persons getAll
     // get    /persons/1 getPersonWithId1
     // post   /persons save
@@ -68,3 +71,5 @@ public class PersonResource {
     //Swagger
     //Spring Security
 }
+
+
