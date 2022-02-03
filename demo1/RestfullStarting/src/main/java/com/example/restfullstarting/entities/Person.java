@@ -1,8 +1,11 @@
 package com.example.restfullstarting.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.hibernate.annotations.BatchSize;
+import org.springframework.boot.convert.DataSizeUnit;
 
 import javax.persistence.*;
 
@@ -11,8 +14,10 @@ import javax.persistence.*;
 public class Person {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @NotNull
     @Column
     private String firstName;
+    @NotNull
     @Column
     private String lastName;
 
